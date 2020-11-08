@@ -12,10 +12,18 @@ void readRecord();
 
 int main()
 {
+    //initializing the program loop variable, default set as Y(yes)
+    char continueProgram = 'Y';
     //initialization of program
     printf("\n\n----------File manipulation program.----------\n\n");
     //main menu function to choose
-    mainMenu();
+    do{
+        mainMenu();
+        printf("\n\tDo you wish to continue?(Y/N)");
+        scanf(" %ch",&continueProgram);
+    }
+    while (continueProgram == 'Y');
+    
 
     return 0;
 }
@@ -39,19 +47,24 @@ void mainMenu()
     switch (userInput)
     {
     case 1:
-        printf("\nCase1: Value is: %d", userInput);
+        //Read record
+        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
         break;
     case 2:
-        printf("\nCase1: Value is: %d", userInput);
+        //add record
+        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
         break;
     case 3:
-        printf("\nCase1: Value is: %d", userInput);
+        //edit record
+        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
         break;
     case 4:
-        printf("\nCase1: Value is: %d", userInput);
+        //delete record
+        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
         break;
     case 5:
-        printf("\nCase1: Value is: %d", userInput);
+        //search record
+        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
     default:
         printf("\nDefault: Value is: %d", userInput);
     }
