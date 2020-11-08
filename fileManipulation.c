@@ -6,15 +6,25 @@ This system should have 4 functions that are
 addRecord, editRecord, deleteRecord, searchByName, searchByIC.
 The name of database file is record.csv. 
 */
+void readRecord();
+
 int main()
 {
     //initialization of program
-    printf("File manipulation program.", "r");
+    printf("File manipulation program.");
+
+    readRecord();
 
     //initialization of file variables
-    FILE *studentRecord;
 
     //reading file
+
+    return 0;
+}
+
+void readRecord()
+{
+    FILE *studentRecord;
     studentRecord = fopen("record.csv", "r");
     char buffer[255] = {0};
     if (studentRecord == NULL)
@@ -30,8 +40,6 @@ int main()
         }
         fclose(studentRecord);
     }
-
-    return 0;
 }
 
 int addRecord()
