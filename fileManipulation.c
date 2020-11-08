@@ -6,8 +6,9 @@ This system should have 4 functions that are
 addRecord, editRecord, deleteRecord, searchByName, searchByIC.
 The name of database file is record.csv. 
 */
-void readRecord();
+
 void mainMenu();
+void readRecord();
 
 int main()
 {
@@ -15,7 +16,6 @@ int main()
     printf("\n\n----------File manipulation program.----------\n\n");
     //main menu function to choose
     mainMenu();
-    //readRecord();
 
     return 0;
 }
@@ -35,7 +35,7 @@ void mainMenu()
         printf("%s\n", menuChoice[i]);
     }
     printf("\tPlease input the number of choice:");
-    scanf("%d",&userInput);
+    scanf("%d", &userInput);
     switch (userInput)
     {
     case 1:
@@ -47,6 +47,11 @@ void mainMenu()
     case 3:
         printf("\nCase1: Value is: %d", userInput);
         break;
+    case 4:
+        printf("\nCase1: Value is: %d", userInput);
+        break;
+    case 5:
+        printf("\nCase1: Value is: %d", userInput);
     default:
         printf("\nDefault: Value is: %d", userInput);
     }
