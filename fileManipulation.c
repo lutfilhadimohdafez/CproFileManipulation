@@ -9,14 +9,27 @@ The name of database file is record.csv.
 int main()
 {
     //initialization of program
-    printf("File manipulation program.","r");
+    printf("File manipulation program.", "r");
 
     //initialization of file variables
     FILE *studentRecord;
-    studentRecord = fopen("C:\Users\Lutfil\Documents\CproFileManipulation");
-    fprintf(studentRecord, "%s %s %s %d", "We", "are", "in", 2012);
 
-    fclose(studentRecord);
+    //reading file
+    studentRecord = fopen("record.csv", "r");
+    char buffer[255] = {0};
+    if (studentRecord == NULL)
+    {
+        printf("\n Failed to open file!");
+    }
+    else
+    {
+        while ((fgets(buffer, 255, studentRecord)) != NULL)
+        {
+            puts(buffer);
+            /* Some processing */
+        }
+        fclose(studentRecord);
+    }
 
     return 0;
 }
