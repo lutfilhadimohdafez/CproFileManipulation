@@ -16,7 +16,7 @@ int addRecord();
 int deleteRecord();
 int searchByName();
 int searchByIC();
-
+int delay();
 
 //main Program function
 int main()
@@ -26,20 +26,22 @@ int main()
     //initialization of program
     printf("\n\n----------File manipulation program.----------\n\n");
     //main menu function to choose
-    do{
+    do
+    {
         mainMenu();
         printf("\n\tDo you wish to continue?(Y/N)");
-        scanf(" %ch",&continueProgram);
-    }
-    while (continueProgram == 'Y');
-    
+        scanf(" %ch", &continueProgram);
+    } while (continueProgram == 'Y');
 
     return 0;
 }
 
 void mainMenu()
 {
+    //declaring user input variable
     int userInput;
+    char searchInput;
+    //below array for menu choice strings
     char menuChoice[5][20] = {
         "Read Record",
         "Add Record",
@@ -57,31 +59,57 @@ void mainMenu()
     {
     case 1:
         //Read record
-        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
         readRecord();
         break;
     case 2:
         //add record
-        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
+        addRecord();
         break;
     case 3:
         //edit record
-        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
+        editRecord();
         break;
     case 4:
         //delete record
-        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
+        deleteRecord();
         break;
     case 5:
         //search record
-        printf("\nSelected choice:%d, doing %s\n", userInput,menuChoice[userInput+1]);
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
+        printf("Please input the type of search , by name(n) or by IC(i):");
+        scanf("%ch", &searchInput);
+        if (searchInput != '\0')
+        {
+            if (searchInput == 'n')
+            {
+                printf("\nSearch Name:");
+                
+            }
+            else if (searchInput = 'i')
+            {
+                printf("\nSearch IC(without '-'):");
+                
+            }
+            else
+            {
+                printf("Wrong Input.");
+                delay(1);
+                
+            }
+        }
+        break; 
+
     default:
-        printf("\nDefault: Value is: %d", userInput);
+        printf("\n Input Error %d");
     }
 }
 
@@ -108,6 +136,7 @@ void readRecord()
 
 int addRecord()
 {
+    int x
     return 0;
 }
 
@@ -131,15 +160,15 @@ int searchByIC()
     return 0;
 }
 
-int delay(int number_of_seconds) 
-{ 
-    // Converting time into milli_seconds 
-    int milli_seconds = 1000 * number_of_seconds; 
-  
-    // Storing start time 
-    clock_t start_time = clock(); 
-  
-    // looping till required time is not achieved 
-    while (clock() < start_time + milli_seconds) 
-        ; 
-} 
+int delay(int number_of_seconds)
+{
+    // Converting time into milli_seconds
+    int milli_seconds = 1000 * number_of_seconds;
+
+    // Storing start time
+    clock_t start_time = clock();
+
+    // looping till required time is not achieved
+    while (clock() < start_time + milli_seconds)
+        ;
+}
