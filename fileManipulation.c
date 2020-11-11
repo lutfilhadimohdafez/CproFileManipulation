@@ -42,13 +42,14 @@ void mainMenu()
     int userInput;
     char searchInput;
     //below array for menu choice strings
-    char menuChoice[5][20] = {
+    char menuChoice[6][20] = {
         "Read Record",
         "Add Record",
         "Edit Record",
         "Delete Record",
-        "Search"};
-    for (int i = 0; i < 5; i++)
+        "Search by Name",
+        "Search by IC"};
+    for (int i = 0; i < 6; i++)
     {
         printf("\t%d.", i + 1);
         printf("%s\n", menuChoice[i]);
@@ -82,32 +83,15 @@ void mainMenu()
         deleteRecord();
         break;
     case 5:
-        //search record
         printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
         delay(3);
-        printf("Please input the type of search , by name(n) or by IC(i):");
-        scanf("%ch", &searchInput);
-        if (searchInput != '\0')
-        {
-            if (searchInput == 'n')
-            {
-                printf("\nSearch Name:");
-                
-            }
-            else if (searchInput = 'i')
-            {
-                printf("\nSearch IC(without '-'):");
-                
-            }
-            else
-            {
-                printf("Wrong Input.");
-                delay(1);
-                
-            }
-        }
-        break; 
-
+        searchByName();
+        break;
+    case 6:
+        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
+        delay(3);
+        searchByIC();
+        break;
     default:
         printf("\n Input Error %d");
     }
@@ -136,7 +120,8 @@ void readRecord()
 
 int addRecord()
 {
-    int x
+    int x;
+
     return 0;
 }
 
@@ -152,11 +137,13 @@ int deleteRecord()
 
 int searchByName()
 {
+    printf("HEY DUMB IM SEARCHING BY NAME");   
     return 0;
 }
 
 int searchByIC()
 {
+    printf("HEY DUMB IM SEARCHING BY IC");
     return 0;
 }
 
