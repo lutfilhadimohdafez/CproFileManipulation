@@ -120,7 +120,7 @@ void readRecord()
 
 int addRecord()
 {
-    int x;
+    
 
     return 0;
 }
@@ -144,7 +144,7 @@ int searchByName()
 int searchByIC()
 {
     printf("HEY DUMB IM SEARCHING BY IC");
-    return 0;
+        return 0;
 }
 
 int delay(int number_of_seconds)
