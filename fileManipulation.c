@@ -30,7 +30,7 @@ int main()
     {
         mainMenu();
         printf("\n\tDo you wish to continue?(Y/N)");
-        scanf(" %ch", &continueProgram);
+        scanf(" %c", &continueProgram);
     } while (continueProgram == 'Y');
 
     return 0;
@@ -56,40 +56,41 @@ void mainMenu()
     }
     printf("\tPlease input the number of choice:");
     scanf("%d", &userInput);
+    printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput - 1]);
     switch (userInput)
     {
     case 1:
         //Read record
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         readRecord();
         break;
     case 2:
         //add record
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         addRecord();
         break;
     case 3:
         //edit record
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         editRecord();
         break;
     case 4:
         //delete record
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         deleteRecord();
         break;
     case 5:
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         searchByName();
         break;
     case 6:
-        printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput + 1]);
-        delay(3);
+
+        delay(1);
         searchByIC();
         break;
     default:
@@ -112,7 +113,7 @@ void readRecord()
         {
             puts(buffer);
             /* Some processing */
-            delay(1);
+            //delay(1);
         }
         fclose(studentRecord);
     }
@@ -120,7 +121,6 @@ void readRecord()
 
 int addRecord()
 {
-    
 
     return 0;
 }
@@ -137,14 +137,14 @@ int deleteRecord()
 
 int searchByName()
 {
-    printf("HEY DUMB IM SEARCHING BY NAME");   
+    printf("HEY DUMB IM SEARCHING BY NAME");
     return 0;
 }
 
 int searchByIC()
 {
     printf("HEY DUMB IM SEARCHING BY IC");
-        return 0;
+    return 0;
 }
 
 int delay(int number_of_seconds)
