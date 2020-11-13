@@ -61,7 +61,7 @@ void mainMenu()
     {
     case 1:
         //Read record
-
+        
         delay(1);
         readRecord();
         break;
