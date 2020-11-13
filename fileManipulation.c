@@ -9,7 +9,7 @@ The name of database file is record.csv.
 */
 
 // Function prototype untuk user define functions
-void mainMenu();
+int mainMenu();
 void readRecord();
 int editRecord();
 int addRecord();
@@ -17,6 +17,9 @@ int deleteRecord();
 int searchByName();
 int searchByIC();
 int delay();
+
+//Global Variable
+FILE *studentRecord;
 
 //main Program function
 int main()
@@ -36,7 +39,7 @@ int main()
     return 0;
 }
 
-void mainMenu()
+int mainMenu()
 {
     //declaring user input variable
     int userInput;
@@ -56,51 +59,62 @@ void mainMenu()
     }
     printf("\tPlease input the number of choice:");
     scanf("%d", &userInput);
-    printf("\nSelected choice:%d, doing %s\n", userInput, menuChoice[userInput - 1]);
-    switch (userInput)
+    if (userInput >= 1 && userInput <= 6)
     {
-    case 1:
-        //Read record
-        
-        delay(1);
-        readRecord();
-        break;
-    case 2:
-        //add record
+        printf("\n\tSelected choice:%d, doing %s\n", userInput, menuChoice[userInput - 1]);
+        switch (userInput)
+        {
+        case 1:
+            //Read record
 
-        delay(1);
-        addRecord();
-        break;
-    case 3:
-        //edit record
+            delay(1);
+            readRecord();
+            break;
+        case 2:
+            //add record
 
-        delay(1);
-        editRecord();
-        break;
-    case 4:
-        //delete record
+            delay(1);
+            addRecord();
+            break;
+        case 3:
+            //edit record
 
-        delay(1);
-        deleteRecord();
-        break;
-    case 5:
+            delay(1);
+            editRecord();
+            break;
+        case 4:
+            //delete record
 
-        delay(1);
-        searchByName();
-        break;
-    case 6:
+            delay(1);
+            deleteRecord();
+            break;
+        case 5:
 
-        delay(1);
-        searchByIC();
-        break;
-    default:
-        printf("\n Input Error %d");
+            delay(1);
+            searchByName();
+            break;
+        case 6:
+
+            delay(1);
+            searchByIC();
+            break;
+        default:
+            return 0;
+        }
+    }
+    if (userInput >= 7)
+    {
+        printf("\n\tWrong number choice, returning to main menu\n");
+        return 0;
+    }
+    else{
+        printf("\n\tInput error, returning to main menu\n");
+        return 0;
     }
 }
 
 void readRecord()
 {
-    FILE *studentRecord;
     studentRecord = fopen("record.csv", "r");
     char buffer[255] = {0};
     if (studentRecord == NULL)
