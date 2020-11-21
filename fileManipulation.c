@@ -1,14 +1,17 @@
+//Preprocessors
+//Restaturant management system using C
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+//Soalan Assignment
 /*1.Construct a database system that contains name and identity card (IC).
 This system should have 4 functions that are
 addRecord, editRecord, deleteRecord, searchByName, searchByIC.
 The name of database file is record.csv. 
 */
 
-// Function prototype untuk user define functions
+// Function prototype untuk user-defined functions
 int mainMenu();
 void readRecord();
 int editRecord();
@@ -20,6 +23,13 @@ int delay();
 
 //Global Variable
 FILE *studentRecord;
+
+struct student{
+    int id;
+    char name[255];
+    char nickname[255];
+    
+};
 
 //main Program function
 int main()
@@ -135,7 +145,10 @@ void readRecord()
 
 int addRecord()
 {
-
+    char id[255],firstName[255],appName[255];
+    studentRecord = fopen("record.csv", "a");
+    fprintf(studentRecord,"");
+    fclose(studentRecord);
     return 0;
 }
 
