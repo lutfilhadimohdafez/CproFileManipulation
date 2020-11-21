@@ -14,7 +14,7 @@ The name of database file is record.csv.
 
 // Function prototype untuk user-defined functions
 int mainMenu();
-void readRecord();
+//void readRecord();
 void printValues();
 int editRecord();
 int addRecord();
@@ -42,14 +42,57 @@ int main()
     system("cls");
     system("color 02");
     char continueProgram = 'Y';
-    //initialization of program
-    
+    //initialization of program to parse data from csv into struct array
+    customerRecord = fopen("record.csv", "r");
+    char buffer[1024];
+    int row_count = 0;
+    int column_count = 0;
+
+    custInfo values[100];
+
+    int i = 0;
+    while (fgets(buffer, 1024, customerRecord))
+    {
+        //printf("%s\n", buffer);//ni utk test masukkan kat dalam array
+        column_count = 0;
+        row_count++;
+        if (row_count == 1)
+        {
+            continue;
+        }
+        char *column = strtok(buffer, ",");
+        //column = malloc(15);
+        while (column)
+        {
+            if (column_count == 0)
+            {
+                strcpy(values[i].custId, column);
+            }
+            if (column_count == 1)
+            {
+                strcpy(values[i].custIC, column);
+            }
+            if (column_count == 2)
+            {
+                strcpy(values[i].custName, column);
+            }
+            if (column_count == 3)
+            {
+                strcpy(values[i].custContactNum, column);
+            }
+
+            column = strtok(NULL, ",");
+            column_count++;
+        }
+        i++;
+    }
+    fclose(customerRecord);
     //main menu function to choose
     do
     {
         system("cls");
         printf("\n\n----------Warung Makcik Bawang----------\n\n");
-        mainMenu();
+        mainMenu(values);
         printf("\n\tDo you wish to continue?(Y/N)");
         scanf(" %c", &continueProgram);
     } while (continueProgram == 'Y');
@@ -57,7 +100,7 @@ int main()
     return 0;
 }
 
-int mainMenu()
+int mainMenu(custInfo values[])
 {
     //declaring user input variable
     int userInput;
@@ -90,8 +133,8 @@ int mainMenu()
             //Read record
 
             delay(1);
-            readRecord();
-            //printValues();
+            //readRecord();
+            printValues(values);
             break;
         case 2:
             //add record
@@ -138,51 +181,52 @@ int mainMenu()
 
 void readRecord()
 {
-    customerRecord = fopen("record.csv", "r");
-    char buffer[1024];
-    int row_count = 0;
-    int column_count = 0;
+    // customerRecord = fopen("record.csv", "r");
+    // char buffer[1024];
+    // int row_count = 0;
+    // int column_count = 0;
 
-    custInfo values[100];
+    // custInfo values[100];
 
-    int i = 0;
-    while (fgets(buffer, 1024, customerRecord))
-    {
-        //printf("%s\n", buffer);//ni utk test masukkan kat dalam array
-        column_count = 0;
-        row_count++;
-        if (row_count == 1)
-        {
-            continue;
-        }
-        char *column = strtok(buffer, ",");
-        //column = malloc(15);
-        while (column)
-        {
-            if (column_count == 0)
-            {
-                strcpy(values[i].custId, column);
-            }
-            if (column_count == 1)
-            {
-                strcpy(values[i].custIC, column);
-            }
-            if (column_count == 2)
-            {
-                strcpy(values[i].custName, column);
-            }
-            if (column_count == 3)
-            {
-                strcpy(values[i].custContactNum, column);
-            }
+    // int i = 0;
+    // while (fgets(buffer, 1024, customerRecord))
+    // {
+    //     //printf("%s\n", buffer);//ni utk test masukkan kat dalam array
+    //     column_count = 0;
+    //     row_count++;
+    //     if (row_count == 1)
+    //     {
+    //         continue;
+    //     }
+    //     char *column = strtok(buffer, ",");
+    //     //column = malloc(15);
+    //     while (column)
+    //     {
+    //         if (column_count == 0)
+    //         {
+    //             strcpy(values[i].custId, column);
+    //         }
+    //         if (column_count == 1)
+    //         {
+    //             strcpy(values[i].custIC, column);
+    //         }
+    //         if (column_count == 2)
+    //         {
+    //             strcpy(values[i].custName, column);
+    //         }
+    //         if (column_count == 3)
+    //         {
+    //             strcpy(values[i].custContactNum, column);
+    //         }
 
-            column = strtok(NULL, ",");
-            column_count++;
-        }
-        i++;
-    }
-    fclose(customerRecord);
-    printValues(values);
+    //         column = strtok(NULL, ",");
+    //         column_count++;
+    //     }
+    //     i++;
+    // }
+    // fclose(customerRecord);
+    //printValues(values);
+    //end of 2nd Version
     // char buffer[10] = {0};
     // if (customerRecord == NULL)
     // {
