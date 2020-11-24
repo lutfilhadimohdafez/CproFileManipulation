@@ -1,21 +1,14 @@
-//Preprocessors
-//Restaturant management system using C
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <errno.h>
-//Soalan Assignment
-/*1.Construct a database system that contains name and identity card (IC).
-This system should have 4 functions that are
-addRecord, editRecord, deleteRecord, searchByName, searchByIC.
-The name of database file is record.csv. 
-*/
 
-// Function prototype untuk user-defined functions
+
 int mainMenu();
-//void readRecord();
 void printValues();
+void dataCheck();
 int editRecord();
 int addRecord();
 int deleteRecord();
@@ -23,7 +16,7 @@ int searchByName();
 int searchByIC();
 int delay();
 
-//Global Variable
+
 FILE *customerRecord;
 
 typedef struct customerInfo
@@ -35,15 +28,18 @@ typedef struct customerInfo
 
 } custInfo;
 
-//main Program function
+char temp[255];
+char *storeIndex[255];
+int searchArr[255];
+
 int main()
 {
-    //initializing the program loop variable, default set as Y(yes)
+
     system("cls");
     system("color 02");
     char continueProgram = 'Y';
     //initialization of program to parse data from csv into struct array
-    customerRecord = fopen("record.csv", "r");
+    customerRecord = fopen("recordCust.csv", "r");
     char buffer[1024];
     int row_count = 0;
     int column_count = 0;
@@ -87,12 +83,12 @@ int main()
         i++;
     }
     fclose(customerRecord);
-    //main menu function to choose
     do
     {
         system("cls");
-        printf("\n\n----------Warung Makcik Bawang----------\n\n");
-        mainMenu(values);
+        system("echo [101;93m ----------Warung Makcik Bawang---------- [0m");
+        //printf("\n\n----------Warung Makcik Bawang----------\n\n");
+        mainMenu(values, &customerRecord);
         printf("\n\tDo you wish to continue?(Y/N)");
         scanf(" %c", &continueProgram);
     } while (continueProgram == 'Y');
@@ -100,14 +96,14 @@ int main()
     return 0;
 }
 
-int mainMenu(custInfo values[])
+int mainMenu(custInfo values[], FILE *customerRecord)
 {
     //declaring user input variable
     int userInput;
-    char searchInput;
+    //char searchInput;
     //below array for menu choice strings
-    char menuChoice[6][20] = {
-        "Read Record",
+    char menuChoice[6][90] = {
+        "Display All Cust Info",
         "Add Record",
         "Edit Record",
         "Delete Record",
@@ -146,7 +142,7 @@ int mainMenu(custInfo values[])
             //edit record
 
             delay(1);
-            editRecord();
+            editRecord(values, customerRecord);
             break;
         case 4:
             //delete record
@@ -157,7 +153,7 @@ int mainMenu(custInfo values[])
         case 5:
 
             delay(1);
-            searchByName();
+            searchByName(values);
             break;
         case 6:
 
@@ -177,83 +173,15 @@ int mainMenu(custInfo values[])
     //     printf("\n\tInput error, returning to main menu\n");
     //     return 0;
     // }
-}
-
-void readRecord()
-{
-    // customerRecord = fopen("record.csv", "r");
-    // char buffer[1024];
-    // int row_count = 0;
-    // int column_count = 0;
-
-    // custInfo values[100];
-
-    // int i = 0;
-    // while (fgets(buffer, 1024, customerRecord))
-    // {
-    //     //printf("%s\n", buffer);//ni utk test masukkan kat dalam array
-    //     column_count = 0;
-    //     row_count++;
-    //     if (row_count == 1)
-    //     {
-    //         continue;
-    //     }
-    //     char *column = strtok(buffer, ",");
-    //     //column = malloc(15);
-    //     while (column)
-    //     {
-    //         if (column_count == 0)
-    //         {
-    //             strcpy(values[i].custId, column);
-    //         }
-    //         if (column_count == 1)
-    //         {
-    //             strcpy(values[i].custIC, column);
-    //         }
-    //         if (column_count == 2)
-    //         {
-    //             strcpy(values[i].custName, column);
-    //         }
-    //         if (column_count == 3)
-    //         {
-    //             strcpy(values[i].custContactNum, column);
-    //         }
-
-    //         column = strtok(NULL, ",");
-    //         column_count++;
-    //     }
-    //     i++;
-    // }
-    // fclose(customerRecord);
-    //printValues(values);
-    //end of 2nd Version
-    // char buffer[10] = {0};
-    // if (customerRecord == NULL)
-    // {
-    //     printf("\n Failed to open file!");
-    // }
-    // else
-    // {
-    //     while ((fgets(buffer, 255, customerRecord)) != NULL)
-    //     {
-    //         puts(buffer);
-    //         /* Some processing */
-    //         //delay(1);
-    //     }
-    //     fclose(customerRecord);
-    // }
+    return 0;
 }
 
 int addRecord()
 {
-    // char id[255], firstName[255], appName[255];
-    // customerRecord = fopen("record.csv", "a");
-    // fprintf(customerRecord, "");
-    // fclose(customerRecord);
-    // return 0;
+    return 0;
 }
 
-int editRecord()
+int editRecord(custInfo values[], FILE *customerRecord)
 {
     return 0;
 }
@@ -263,9 +191,30 @@ int deleteRecord()
     return 0;
 }
 
-int searchByName()
+int searchByName(custInfo values[])
 {
-    printf("HEY DUMB IM SEARCHING BY NAME");
+    int w = 0, x = 0, y = 0, z = 0;
+    char *p;
+    printf("\n\tEnter customer's name:");
+    fflush(stdin);
+    gets(temp);
+    printf("\n");
+    for (int i = 0; i < 100; i++)
+    {
+        p = strstr(values[i].custName, temp);
+        if (p != NULL)
+        {
+            printf("\tCust ID: %s\tCust IC: %s", values[i].custId, values[i].custIC);
+            printf("\tCust Name: %s\t\tContactNo: %s", values[i].custName, values[i].custContactNum);
+            searchArr[x] = i;
+            //printf("%p",storeIndex);
+            x++;
+        }
+    }
+    // for(int d=0;d<100;d++){
+    //     printf("%d",d);
+    //     printf("%d\n",searchArr[d]);
+    // }
     return 0;
 }
 
@@ -286,6 +235,11 @@ int delay(int number_of_seconds)
     // looping till required time is not achieved
     while (clock() < start_time + milli_seconds)
         ;
+    return 0;
+}
+
+void dataCheck(custInfo values[], FILE *customerRecord)
+{
 }
 
 void printValues(custInfo values[])
@@ -293,7 +247,10 @@ void printValues(custInfo values[])
     printf("\n");
     for (int i = 0; i < 100; i++)
     {
-        printf("\tCust ID: %s\tCust IC: %s", values[i].custId, values[i].custIC);
-        printf("\tCust Name: %s\t\tContactNo: %s", values[i].custName, values[i].custContactNum);
+        if (values[i].custId != "\0")
+        {
+            printf("\tCust ID: %s\tCust IC: %s", values[i].custId, values[i].custIC);
+            printf("\tCust Name: %s\t\tContactNo: %s", values[i].custName, values[i].custContactNum);
+        }
     }
 }
